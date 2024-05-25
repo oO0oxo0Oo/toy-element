@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref,computed } from 'vue';
+import { ref,computed,inject } from 'vue';
 import type { ButtonProps, ButtonInstance, ButtonEmits } from './types';
 import { throttle } from 'lodash-es'
 import  ErIcon  from '../Icon/Icon.vue';
+import { BUTTON_GROUP_CTX_KEY } from './constants';
 
 defineOptions({
   //设置组件的名称为 'ErButton'。
@@ -22,14 +23,28 @@ const emits = defineEmits<ButtonEmits>()
 // 定义组件的插槽
 const slots = defineSlots()
 
+const ctx=inject(BUTTON_GROUP_CTX_KEY, void 0)
+
 // 创建一个对HTMLButtonElement的引用
 const _ref = ref<HTMLButtonElement>()
+
+const size=computed(()=>{
+  // 通过条件运算符优先从ctx中获取size值，如果ctx不存在或未定义size，则从props中获取size值，最后默认为空字符串
+  return ctx?.size ?? props?.size ?? ""
+})
+const type=computed(()=>{
+  return ctx?.type ?? props?.type ?? ""
+})
+const disabled=computed(()=>{
+  return ctx?.disabled || props?.disabled || false
+})
+
 const iconStyle =computed(()=>{
   marginRight: slots.default ? "6px" : "0px"
 })
 
 const handleBtnClick = (e: MouseEvent) => emits("click", e)
-const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration ,{trailing : false} )
 
 
 defineExpose<ButtonInstance>({

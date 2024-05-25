@@ -1,6 +1,7 @@
-/* .er-button-group {
+.er-button-group {
   --er-button-group-border-color: var(--er-border-color-lighter);
-} */
+}
+
 .er-button {
   --er-button-font-weight: var(--er-font-weight-primary);
   --er-button-border-color: var(--er-border-color);
@@ -203,36 +204,42 @@
   }
 }
 
-/* .er-button-group {
+.er-button-group {
   display: inline-block;
   vertical-align: middle;
 
   &::after {
     clear: both;
   }
-  & > :deep(.er-button){
+
+  &> :deep(.er-button) {
     float: left;
     position: relative;
     margin-left: 0;
-    &:first-child{
+
+    &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       border-right-color: var(--er-button-group-border-color);
     }
-    &:last-child{
+
+    &:last-child {
       border-top-left-radius: 0;
-      border-bottom-left-radius: 0; 
+      border-bottom-left-radius: 0;
       border-left-color: var(--er-button-group-border-color);
     }
+
     &:not(:first-child):not(:last-child) {
       border-radius: 0;
 
       border-left-color: var(--er-button-group-border-color);
       border-right-color: var(--er-button-group-border-color);
     }
+
     &:not(:last-child) {
       margin-right: -1px;
     }
+
     &:first-child:last-child {
       border-top-right-radius: var(--er-border-radius-base);
       border-bottom-right-radius: var(--er-border-radius-base);
@@ -248,4 +255,4 @@
       }
     }
   }
-} */
+}
