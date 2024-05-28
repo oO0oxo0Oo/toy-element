@@ -1,5 +1,5 @@
 // 导入 @toy-element/components 库中的 ErButton 组件
-import { ErButton, ErButtonGroup, ErIcon } from "@toy-element/components";
+import { ErButton, ErButtonGroup, ErIcon } from "../components";
 
 // 导入 Vue 中的 Plugin 类型定义
 import type { Plugin } from "vue";
