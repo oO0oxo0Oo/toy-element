@@ -1,6 +1,6 @@
 {
-  "name": "o0o-toy-element-o0o",
-  "version": "1.0.0",
+  "name": "toy-element",
+  "version": "1.0.1",
   "description": "components library by Vue3 + TS",
   "type": "module",
   "main": "./dist/umd/index.umd.cjs",
