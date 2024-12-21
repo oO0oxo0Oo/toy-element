@@ -1,4 +1,3 @@
-// 导入 makeInstaller 函数来自 "@toy-element/utils"，用于批量创建组件安装器
 import { makeInstaller } from "@toy-element/utils";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";

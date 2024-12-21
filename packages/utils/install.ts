@@ -12,6 +12,7 @@ export function makeInstaller(components: Plugin[]) {
     // 遍历组件数组，将每个组件通过 app.use 方法安装到 Vue 应用中
     each(components, (c) => {
       app.use(c);
+
     });
   };
 

@@ -1,19 +1,12 @@
-// 导入类型定义
 import type { Meta, StoryObj, ArgTypes } from '@storybook/vue3';
 import { fn, within, userEvent, expect } from '@storybook/test';
-
-// 导入组件
 import { ErButton, ErButtonGroup } from 'toy-element'
-
-/**
- * 定义Story类型，它是StoryObj和ArgTypes的结合体。
- * 用于增强和规范化故事书中的故事对象。
- */
 type Story = StoryObj<typeof ErButton> & { argTypes?: ArgTypes }
 
 const meta: Meta<typeof ErButton> = {
   title: "Example/Button",
   component: ErButton,
+  subcomponents: { ButtonGroup: ErButtonGroup },
   tags: ["autodocs"],
   argTypes: {
     type: {
@@ -63,7 +56,7 @@ const container = (val: string) => `
 </div>
 `;
 
-export const Defualt: Story & { args: { content: string } } = {
+export const Default: Story & { args: { content: string } } = {
   argTypes: {
     content: {
       control: { type: "text" },
@@ -83,14 +76,6 @@ export const Defualt: Story & { args: { content: string } } = {
     ),
   }),
 
-  /**
-  * 异步播放函数，用于在给定的canvas元素上执行一系列操作。
-  * @param {Object} param0 - 包含执行操作所需参数的对象。
-  * @param {HTMLCanvasElement} param0.canvasElement - 用于操作的canvas元素。
-  * @param {Object} param0.args - 包含额外参数的对象，比如onClick函数。
-  * @param {Function} param0.step - 用于执行操作的步骤函数。
-  * @returns {Promise<void>} - 不返回任何内容。
-  */
   play: async ({ canvasElement, args, step }) => {
     // 获取canvas元素的上下文
     const canvas = within(canvasElement);
