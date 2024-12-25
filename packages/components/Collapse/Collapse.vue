@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref, provide, watch, watchEffect } from "vue";
 import type { CollapseProps, CollapseEmits,CollapseItemName} from "./types";
-// import { debugWarn } from "@eric-ui/utils";
+import { debugWarn } from "@toy-element/utils";
 import { COLLAPSE_CTX_KEY } from "./contants";
 import { each } from "lodash-es";
 
+const COMPONENT_NAME="ErCollapse" as const;
+
 defineOptions({
-  name: "ErCollapse",
+  name: COMPONENT_NAME,
 });
 const props = defineProps<CollapseProps>()
 const emits = defineEmits<CollapseEmits>()
@@ -14,8 +16,7 @@ const activeNames =ref<CollapseItemName[]>(props.modelValue)
 
 watchEffect(()=>{
   if (props.accordion && activeNames.value.length > 1) {
-    // debugWarn(COMPONENT_NAME, "accordion mode should only have one active item");
-    console.warn("accordion mode should only have one active item");
+    debugWarn(COMPONENT_NAME, "accordion mode should only have one active item");
   }
 })
 
