@@ -1,5 +1,5 @@
-import 'toy-element/dist/theme/index.css'
-
+// import 'toy-element/dist/theme/index.css'
+import "toy-element/dist/index.css"
 /** @type { import('@storybook/vue3').Preview } */
 const preview = {
   parameters: {
