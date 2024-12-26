@@ -32,6 +32,8 @@ const handleBtnClick = (e: MouseEvent) => {
 };
 const handlBtneCLickThrottle = throttle(handleBtnClick, props.throttleDuration);
 
+console.log('button')
+
 defineExpose<ButtonInstance>({
   ref: _ref,
   disabled,

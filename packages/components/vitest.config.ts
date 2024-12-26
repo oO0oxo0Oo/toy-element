@@ -7,10 +7,12 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 
 // 配置对象
 export default defineConfig({
-  // 插件配置，启用Vue.js和Vue JSX支持
   plugins: [vue(), vueJsx()],
-
-  // 测试配置
+  define:{
+    PROD: JSON.stringify(false),
+    DEV: JSON.stringify(false),
+    TEST: JSON.stringify(true),
+  },
   test: {
     globals: true,
     environment: "jsdom",

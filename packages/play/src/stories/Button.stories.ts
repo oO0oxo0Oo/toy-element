@@ -1,6 +1,8 @@
 import type { Meta, StoryObj, ArgTypes } from '@storybook/vue3';
 import { fn, within, userEvent, expect } from '@storybook/test';
 import { ErButton, ErButtonGroup } from 'toy-element'
+import  "toy-element/dist/theme/Button.css"
+
 type Story = StoryObj<typeof ErButton> & { argTypes?: ArgTypes }
 
 const meta: Meta<typeof ErButton> = {
@@ -8,7 +10,7 @@ const meta: Meta<typeof ErButton> = {
   component: ErButton,
   subcomponents: { ButtonGroup: ErButtonGroup },
   tags: ["autodocs"],
-  argTypes: {
+  argTypes: {   
     type: {
       control: { type: "select" },
       options: ["primary", "success", "warning", "danger", "info", ""],

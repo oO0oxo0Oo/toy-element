@@ -1,11 +1,14 @@
 import { makeInstaller } from "@toy-element/utils";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import printLogo from "./printLogo";
 
 // 导入组件集合，假定这个模块导出了需要安装的所有组件
 import components from "./components";
 
 import '@toy-element/theme/index.css'
+
+printLogo();
 
 library.add(fas);
 // 使用 makeInstaller 函数处理导入的组件数组，创建一个安装函数
