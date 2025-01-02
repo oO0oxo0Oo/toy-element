@@ -77,14 +77,6 @@ demo-preview=../demo/button/Size.vue
 demo-preview=../demo/button/Tag.vue
 :::
 
-## 节流模式
-
-可以通过 `useThrottle` 属性来定义按钮是否使用节流模式 默认为 true。
-
-::: preview
-demo-preview=../demo/button/Throttle.vue
-:::
-
 ## Button API
 
 ### Props
