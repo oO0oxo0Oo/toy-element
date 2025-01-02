@@ -25,5 +25,11 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
-  }
+  },
+  // markdown: {
+  //   config(md) {
+  //     md.use(containerPreview);
+  //     md.use(componentPreview);
+  //   },
+  // },
 })

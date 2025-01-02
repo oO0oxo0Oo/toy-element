@@ -1,3 +1,10 @@
-// 导出 './install' 文件中的所有命名导出，使得这些导出可以在当前模块中被访问和使用
+export const typeIconMap = new Map([
+  ["info", "circle-info"],
+  ["success", "check-circle"],
+  ["warning", "circle-exclamation"],
+  ["danger", "circle-xmark"],
+  ["error", "circle-xmark"],
+]);
+
 export * from './install';
 export * from './error';
