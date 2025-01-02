@@ -20,7 +20,7 @@ prev:
 你可以使用 `disabled` 属性来定义按钮是否被禁用。
 
 ::: preview
-demo-preview=../demo/button/Disabled.vue
+demo-preview=./demo/button/Disabled.vue
 :::
 
 ## 图标按钮
