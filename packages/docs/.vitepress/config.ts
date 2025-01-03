@@ -4,13 +4,13 @@ import {
   componentPreview,
 } from "@vitepress-demo-preview/plugin";
 
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Toy-Element",
   description: "高仿 ElementPlus 组件库",
   base: '/toy-element/',
   appearance: false,
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
