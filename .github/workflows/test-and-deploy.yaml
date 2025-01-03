@@ -5,6 +5,8 @@ on:
     branches:
       - master
 
+  workflow_dispatch:
+
 jobs:
   test:
     name: Run Lint and Test
