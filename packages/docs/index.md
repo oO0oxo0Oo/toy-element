@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Markdown Examples
-      link: /get-start
+      link: /get-started
 
 features:
   - title: Feature A
