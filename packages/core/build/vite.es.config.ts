@@ -1,7 +1,8 @@
 import { defineConfig } from "vite";
-import { readdirSync } from "fs";
+import { readdir, readdirSync } from "fs";
 import { resolve } from "path";
-import { delay, filter, map } from "lodash-es";
+import { defer, delay, filter, map } from "lodash-es";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from 'vite-plugin-dts';
 import shell from 'shelljs';
@@ -13,14 +14,14 @@ const TRY_MOVE_STYLES_DELAY=800 as const
 const isProd = process.env.NODE_ENV === "production";
 const isDev = process.env.NODE_ENV === "development";
 const isTest = process.env.NODE_ENV === "test";
+
 function moveStyles() {
-  try{
-    readdirSync("./dist/es/theme");
-    shell.mv("./dist/es/theme", "./dist")
-  }catch(_){
-    delay(moveStyles, TRY_MOVE_STYLES_DELAY);
-  }
+  readdir("./dist/es/theme", (err) => {
+    if (err) return delay(moveStyles, TRY_MOVE_STYLES_DELAY);
+    defer(() => shell.mv("./dist/es/theme", "./dist"));
+  });
 }
+
 
 function getDirectoriesSync(basePath: string) {
   const entries = readdirSync(basePath, { withFileTypes: true });
@@ -35,6 +36,9 @@ export default defineConfig({
   // 应用插件，这里只应用了vue插件
   plugins: [
     vue(), 
+    visualizer({
+      filename: "dist/stats.es.html",
+    }),
     dts({
     tsconfigPath: '../../tsconfig.build.json',
     outDir: "dist/types"
@@ -79,7 +83,7 @@ export default defineConfig({
     // 定义库配置
     lib: {
       // 入口文件路径
-      entry: resolve(__dirname, './index.ts'),
+      entry: resolve(__dirname, '../index.ts'),
       // 库名称
       name: 'ToyElement',
       // 输出文件名
