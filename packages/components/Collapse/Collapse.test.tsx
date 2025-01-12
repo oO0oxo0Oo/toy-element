@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, test, vi } from "vitest";
 import { DOMWrapper, mount, type VueWrapper } from "@vue/test-utils";
-// import transitionEvents from "./transitionEvents";
+import transitionEvents from "./transitionEvents";
 
 import Collapse from "./Collapse.vue";
 import CollapseItem from "./CollapseItem.vue";
@@ -166,10 +166,47 @@ describe("Collapse.vue", () => {
       `
         [
           [
-            [ErUIError: [ErCollapse] accordion mode should only have one active item],
+            [ErUIError: [ErCollapse]:accordion mode should only have one active item],
           ],
         ]
       `
     );
+  });
+});
+
+
+describe("Collapse/transitionEvents.ts", () => {
+  const wrapper = mount(() => <div></div>);
+  test("beforeEnter", () => {
+    transitionEvents.beforeEnter(wrapper.element);
+    expect(wrapper.element.style.height).toBe("0px");
+    expect(wrapper.element.style.overflow).toBe("hidden");
+  });
+  test("enter", () => {
+    transitionEvents.enter(wrapper.element);
+    expect(wrapper.element.style.height).toBe(
+      `${wrapper.element.scrollHeight}px`
+    );
+  });
+  test("afterEnter", () => {
+    transitionEvents.afterEnter(wrapper.element);
+    expect(wrapper.element.style.height).toBe("");
+    expect(wrapper.element.style.overflow).toBe("");
+  });
+  test("beforeLeave", () => {
+    transitionEvents.beforeLeave(wrapper.element);
+    expect(wrapper.element.style.height).toBe(
+      `${wrapper.element.scrollHeight}px`
+    );
+    expect(wrapper.element.style.overflow).toBe("hidden");
+  });
+  test("leave", () => {
+    transitionEvents.leave(wrapper.element);
+    expect(wrapper.element.style.height).toBe("0px");
+  });
+  test("afterLeave", () => {
+    transitionEvents.afterLeave(wrapper.element);
+    expect(wrapper.element.style.height).toBe("");
+    expect(wrapper.element.style.overflow).toBe("");
   });
 });
