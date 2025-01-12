@@ -196,6 +196,10 @@ importers:
       vue:
         specifier: ^3.4.19
         version: 3.4.27(typescript@5.7.2)
+    devDependencies:
+      vite-plugin-dts:
+        specifier: ^4.5.0
+        version: 4.5.0(@types/node@20.12.11)(rollup@4.17.2)(typescript@5.7.2)(vite@5.2.11(@types/node@20.12.11)(sass@1.83.0)(terser@5.31.0))
 
   packages/play:
     devDependencies:
