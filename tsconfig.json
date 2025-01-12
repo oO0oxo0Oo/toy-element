@@ -29,5 +29,5 @@
     "packages/**/*.ts",
     "packages/**/*.tsx",
     "packages/**/*.vue"
-, "vitest.config.ts"  ]
+, "vitest.config.ts", "libs/vite-plugins/hooksPlugin.ts"  ]
 }

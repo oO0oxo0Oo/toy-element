@@ -5,6 +5,8 @@ import type { TooltipProps, TooltipEmits, TooltipInstance } from "./type";
 import { bind, debounce, type DebouncedFunc } from "lodash-es";
 import { useClickOutside } from "@toy-element/hooks"
 
+import useEventsToTiggerNode from "./useEventsToTiggerNode"
+
 interface _TooltipProps extends TooltipProps {
   virtualRef?: HTMLElement | void;
   virtualTriggering?: boolean;
@@ -21,7 +23,6 @@ const props = withDefaults(defineProps<_TooltipProps>(), {
   hideTimeout: 200,
 });
 
-
 const emits = defineEmits<TooltipEmits>();
 const visible = ref(false);
 
@@ -31,7 +32,14 @@ const dropdownEvents: Ref<Record<string, EventListener>> = ref({});
 
 const containerNode = ref<HTMLElement>();
 const popperNode = ref<HTMLElement>();
-const triggerNode = ref<HTMLElement>();
+const _triggerNode = ref<HTMLElement>();
+
+const triggerNode = computed(() => {
+  if(props.virtualTriggering){
+    return ( props.virtualRef as HTMLElement) ?? _triggerNode.value;
+  }
+  return _triggerNode.value as HTMLElement;
+})
 
 
 const popperOptions = computed(() => ({
@@ -171,6 +179,11 @@ useClickOutside(containerNode, () => {
   visible.value && closeFinal();
 });
 
+useEventsToTiggerNode(props, triggerNode, events, () => {
+  openDebounce?.cancel();
+  setVisible(false);
+});
+
 onUnmounted(() => {
   destroyPopperInstance();
 });
@@ -208,3 +221,7 @@ defineExpose<TooltipInstance>({
     </transition>
   </div>
 </template>
+
+<style scoped>
+@import './style.css';
+</style>

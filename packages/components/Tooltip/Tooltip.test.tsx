@@ -153,26 +153,26 @@ describe("Tooltip.vue", () => {
     expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
   });
 
-  // 虚拟触发节点的测试
-  // test("tooltip with virtual trigger node", async () => {
-  //   // ... 省略其他设置
-  //   const virtualRef = document.createElement("div");
-  //   let wrapper = mount(Tooltip, {
-  //     props: { virtualTriggering: true },
-  //   });
-  //   // wrapper.setProps({ virtualRef });
-  //   // await vi.runAllTimers();
-  //   // // 测试虚拟节点的事件触发
-  //   virtualRef.dispatchEvent(new Event("mouseenter"));
-  //   await vi.runAllTimers();
-  //   expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+  //虚拟触发节点的测试
+  test("tooltip with virtual trigger node", async () => {
+    // ... 省略其他设置
+    const virtualRef = document.createElement("div");
+    let wrapper = mount(Tooltip, {
+      props: { virtualTriggering: true },
+    });
+    wrapper.setProps({ virtualRef });
+    await vi.runAllTimers();
+    // 测试虚拟节点的事件触发
+    virtualRef.dispatchEvent(new Event("mouseenter"));
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
 
-  //   // wrapper.setProps({ trigger: "click" });
-  //   // await vi.runAllTimers();
-  //   // virtualRef.dispatchEvent(new Event("click"));
-  //   // await vi.runAllTimers();
-  //   // expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+    wrapper.setProps({ trigger: "click" });
+    await vi.runAllTimers();
+    virtualRef.dispatchEvent(new Event("click"));
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
 
-  //   // wrapper.unmount();
-  // });
+    wrapper.unmount();
+  });
 })
