@@ -134,11 +134,11 @@ describe("Tooltip.vue", () => {
     await vi.runAllTimers();
     expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
 
-    // wrapper.setProps({ disabled: true });
-    // await vi.runAllTimers();
-    // wrapper.vm.show();
-    // await vi.runAllTimers();
-    // expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
+    wrapper.setProps({ disabled: true });
+    await vi.runAllTimers();
+    wrapper.vm.show();
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
   });
 
   // 禁用状态的测试
@@ -175,4 +175,86 @@ describe("Tooltip.vue", () => {
 
     wrapper.unmount();
   });
+
+  test("change trigger prop", async () => {
+    const wrapper = mount(Tooltip, {
+      props: { trigger: "hover", content: "test" },
+    });
+
+    wrapper.setProps({ trigger: "click" });
+
+    await vi.runAllTimers();
+    wrapper.find(".er-tooltip__trigger").trigger("click");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+
+    wrapper.find(".er-tooltip__trigger").trigger("click");
+
+    await vi.runAllTimers();
+
+    wrapper.find(".er-tooltip__trigger").trigger("hover");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
+  });
+
+  test("change manual prop", async () => {
+    const wrapper = mount(Tooltip, {
+      props: { trigger: "hover", content: "test" },
+    });
+
+    wrapper.setProps({ manual: true });
+    await vi.runAllTimers();
+
+    wrapper.find(".er-tooltip__trigger").trigger("hover");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
+
+    wrapper.setProps({ manual: false, trigger: "contextmenu" });
+
+    await vi.runAllTimers();
+
+    wrapper.find(".er-tooltip__trigger").trigger("contextmenu");
+
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+  });
+
+  test("click-outside disabled when trigger prop is hover or manual mode", async () => {
+    const wrapper = mount(
+      () => (
+        <div>
+          <div id="outside"></div>
+          <Tooltip
+            content="hello tooltip"
+            trigger="hover"
+            {...{ onVisibleChange }}
+          >
+            <button id="trigger">trigger</button>
+          </Tooltip>
+        </div>
+      ),
+      {
+        attachTo: document.body,
+      }
+    );
+    const triggerArea = wrapper.find("#trigger");
+    expect(triggerArea.exists()).toBeTruthy();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeFalsy();
+
+    // 弹出层是否出现
+    wrapper.find(".er-tooltip__trigger").trigger("mouseenter");
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+
+    // trigger:hover外层点击不触发
+    wrapper.get("#outside").trigger("click");
+    await vi.runAllTimers();
+    expect(wrapper.find(".er-tooltip__popper").exists()).toBeTruthy();
+    // 注销流程
+    wrapper.unmount();
+  });
 })
+
