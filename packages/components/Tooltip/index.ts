@@ -3,4 +3,4 @@ import { withInstall} from "@toy-element/utils";
 
 export const ErTooltip = withInstall(Tooltip)
 
-export * from './type'
+export * from './types'

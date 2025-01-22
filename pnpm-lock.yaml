@@ -11,6 +11,9 @@ importers:
       '@toy-element/hooks':
         specifier: workspace:*
         version: link:packages/hooks
+      '@toy-element/locale':
+        specifier: workspace:*
+        version: link:packages/locale
       '@toy-element/theme':
         specifier: workspace:*
         version: link:packages/theme
@@ -114,6 +117,9 @@ importers:
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.4.5)
+      vue3-i18n:
+        specifier: ^1.1.5
+        version: 1.1.5(vue@3.4.27(typescript@5.4.5))
 
   libs/vite-plugins:
     devDependencies:
@@ -203,6 +209,8 @@ importers:
       vite-plugin-dts:
         specifier: ^4.5.0
         version: 4.5.0(@types/node@20.12.11)(rollup@4.17.2)(typescript@5.7.2)(vite@5.2.11(@types/node@20.12.11)(sass@1.83.0)(terser@5.31.0))
+
+  packages/locale: {}
 
   packages/play:
     devDependencies:
@@ -4303,6 +4311,11 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-i18n@1.1.5:
+    resolution: {integrity: sha512-DN5XfE0z6BnFxjbP/qW8AKI5QCex97L2l8z7G76ccTkfTsJ18n4mXGCy4K9H2rm4FlzDx/USPlPqQK64yXQqDg==}
+    peerDependencies:
+      vue: ^3.0.0
 
   vue@3.4.27:
     resolution: {integrity: sha512-8s/56uK6r01r1icG/aEOHqyMVxd1bkYcSe9j8HcKtr/xTOFWvnzIVTehNW+5Yt89f+DLBe4A569pnZLS5HzAMA==}
@@ -8980,6 +8993,10 @@ snapshots:
       '@vue/language-core': 1.8.27(typescript@5.7.2)
       semver: 7.6.1
       typescript: 5.7.2
+
+  vue3-i18n@1.1.5(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      vue: 3.4.27(typescript@5.4.5)
 
   vue@3.4.27(typescript@5.4.5):
     dependencies:

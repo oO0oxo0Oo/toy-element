@@ -1,22 +1,21 @@
-<script lang="ts" setup>
-import {ref,computed} from 'vue'
+<script setup lang="ts">
+import { ref, computed } from "vue";
 import { addUnit } from "@toy-element/utils";
-import type { TooltipInstance } from '../Tooltip';
+import { useLocale } from "@toy-element/hooks";
+import type { TooltipInstance } from "../Tooltip";
 import type { PopconfirmProps, PopconfirmEmits } from "./types";
 
-import ErTooltip from "../Tooltip/Tooltip.vue"
+import ErTooltip from "../Tooltip/Tooltip.vue";
 import ErButton from "../Button/Button.vue";
 import ErIcon from "../Icon/Icon.vue";
 
 defineOptions({
-  name:'ErPopconfirm'
-})
+  name: "ErPopconfirm",
+});
 
 const props = withDefaults(defineProps<PopconfirmProps>(), {
   title: "",
   confirmButtonType: "primary",
-  cancelButtonText: "取消",
-  confirmButtonText: "确定",
   icon: "question-circle",
   iconColor: "#f90",
   hideAfter: 200,
@@ -24,14 +23,16 @@ const props = withDefaults(defineProps<PopconfirmProps>(), {
 });
 
 const emits = defineEmits<PopconfirmEmits>();
-const tooltipRef =ref<TooltipInstance>()
+const tooltipRef = ref<TooltipInstance>();
 const style = computed(() => ({ width: addUnit(props.width) }));
+
+const locale = useLocale();
 
 function hidePopper() {
   tooltipRef.value?.hide();
 }
 
-function confirm(e: MouseEvent) {
+function confrim(e: MouseEvent) {
   emits("confirm", e);
   hidePopper();
 }
@@ -57,28 +58,29 @@ function cancel(e: MouseEvent) {
             :type="cancelButtonType"
             @click="cancel"
           >
-            {{ cancelButtonText }}
+            {{ cancelButtonText || locale.t("popconfirm.cancelButtonText") }}
           </er-button>
           <er-button
             class="er-popconfirm__confirm"
             size="small"
             :type="confirmButtonType"
-            @click="confirm"
+            @click="confrim"
           >
-            {{ confirmButtonText }}
+            {{ confirmButtonText || locale.t("popconfirm.confirmButtonText") }}
           </er-button>
         </div>
       </div>
     </template>
+
     <template v-if="$slots.default" #default>
       <slot name="default"></slot>
     </template>
+
     <template v-if="$slots.reference" #default>
       <slot name="reference"></slot>
     </template>
   </er-tooltip>
 </template>
-
 
 <style scoped>
 @import "./style.css";

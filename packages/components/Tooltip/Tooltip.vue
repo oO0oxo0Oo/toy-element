@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch, watchEffect, type Ref } from "vue";
 import { createPopper, type Instance } from "@popperjs/core";
-import type { TooltipProps, TooltipEmits, TooltipInstance } from "./type";
+import type { TooltipProps, TooltipEmits, TooltipInstance } from "./types";
 import { bind, debounce, type DebouncedFunc } from "lodash-es";
 import { useClickOutside } from "@toy-element/hooks"
 
