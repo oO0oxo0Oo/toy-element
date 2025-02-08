@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-
+      
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@3
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -65,11 +65,11 @@ jobs:
     steps:
       - name: Download docs
         uses: actions/download-artifact@v4
-        with: 
+        with:
           name: docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: .      
+          publish_dir: .
