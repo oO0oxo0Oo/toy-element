@@ -27,7 +27,7 @@ const tooltipRef = ref<TooltipInstance>();
 const style = computed(() => ({ width: addUnit(props.width) }));
 
 const locale = useLocale();
-
+ 
 function hidePopper() {
   tooltipRef.value?.hide();
 }

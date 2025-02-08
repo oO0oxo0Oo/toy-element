@@ -3,6 +3,8 @@ import useEventListener from "./useEventListener";
 import useDisabledStyle from "./useDisabledStyle";
 import useId from "./useId";
 import useLocale from "./useLocale";
+import useZIndex from "./useZIndex";
+import useOffset from "./useOffset";
 
 export { 
   useClickOutside, 
@@ -10,4 +12,6 @@ export {
   useDisabledStyle, 
   useId,
   useLocale, 
+  useZIndex,
+  useOffset,
 };
