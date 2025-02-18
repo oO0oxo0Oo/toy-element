@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import {reactive} from 'vue';
+import { ErMessageBox, ErMessage } from "toy-element";
 
-const form = reactive({
-  name: "",
-  docs: "",
-});
+function openAlert() {
+  ErMessageBox.alert("This is a message", "Title")
+    .then((action) => {
+      ErMessage.info(`action: ${action}`);
+    })
+    .catch((action) => {
+      ErMessage.warning(`action: ${action}`);
+    });
+}
 </script>
 
-<template>name
-  <er-input v-model="form.name" show-password type="password"/>
-  <er-input v-model="form.docs" type="textarea"/>
+<template>
+  <er-button @click="openAlert" plain> Click to open the Alert</er-button>
 </template>

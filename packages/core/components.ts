@@ -13,6 +13,7 @@ import {
   ErMessage,
   ErNotification,
   ErInput,
+  ErMessageBox,
 } from "../components";
 import type { Plugin } from "vue";
 
@@ -31,4 +32,5 @@ export default [
   ErMessage,
   ErNotification,
   ErInput,
+  ErMessageBox,
 ] as Plugin[];
