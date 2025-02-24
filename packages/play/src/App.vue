@@ -1,84 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { ErSwitch } from "toy-element"; 
+import { ref } from 'vue';
 
-// 示例数据
-const basicValue = ref(false);
-const textValue = ref(false);
-const disabledValue = ref(true);
-const sizeValue = ref(false);
-const customValue = ref("inactive");
+const options = ref([
+  { value: '选项1', label: '黄金糕' },
+  { value: '选项2', label: '双皮奶' },
+  { value: '选项3', label: '蚵仔煎' },
+  { value: '选项4', label: '龙须面' , disabled: true },
+  { value: '选项5', label: '北京烤鸭' },
+]);
+const value = ref('');
 </script>
 
 <template>
-  <div class="switch-example">
-    <h2>ErSwitch 示例</h2>
-
-    <!-- 基础用法 -->
-    <div class="example-item">
-      <h3>基础开关</h3>
-      <ErSwitch v-model="basicValue" />
-      <p>当前值：{{ basicValue }}</p>
-    </div>
-
-    <!-- 带文本的开关 -->
-    <div class="example-item">
-      <h3>带文本的开关</h3>
-      <ErSwitch
-        v-model="textValue"
-        active-text="开"
-        inactive-text="关"
-      />
-      <p>当前值：{{ textValue }}</p>
-    </div>
-
-    <!-- 禁用状态 -->
-    <div class="example-item">
-      <h3>禁用状态</h3>
-      <ErSwitch
-        v-model="disabledValue"
-        disabled
-        active-text="开"
-        inactive-text="关"
-      />
-      <p>当前值：{{ disabledValue }}</p>
-    </div>
-
-    <!-- 不同尺寸 -->
-    <div class="example-item">
-      <h3>不同尺寸</h3>
-      <ErSwitch v-model="sizeValue" size="small" />
-      <ErSwitch v-model="sizeValue" size="large" />
-      <p>当前值：{{ sizeValue }}</p>
-    </div>
-
-    <!-- 自定义值 -->
-    <div class="example-item">
-      <h3>自定义值</h3>
-      <ErSwitch
-        v-model="customValue"
-        active-value="active"
-        inactive-value="inactive"
-      />
-      <p>当前值：{{ customValue }}</p>
-    </div>
-  </div>
+<er-select v-model="value" fliterable placeholder="请选择" clearable> 
+  <er-option value="选项1" label="黄金糕" />
+  <er-option value="选项2" label="双皮奶" />
+  <er-option value="选项3" label="蚵仔煎" />
+  <er-option value="选项4" label="龙须面" disabled />
+  <er-option value="选项5" label="北京烤鸭" />
+</er-select>
 </template>
 
-<style scoped>
-.switch-example {
-  margin: 20px;
-}
-
-.example-item {
-  margin-bottom: 20px;
-}
-
-.example-item h3 {
-  margin: 0 0 10px;
-}
-
-p {
-  margin: 10px 0;
-}
-</style>
